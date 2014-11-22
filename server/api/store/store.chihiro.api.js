@@ -5,7 +5,7 @@ var request = require('request');
  * @param cb - The callback that handles the response.
  */
 exports.getGeo = function(cb) {
-	options = {
+	var options = {
 		url: 'https://store.sonyentertainmentnetwork.com/kamaji/api/chihiro/00_09_000/geo',
         json: true
 	};
@@ -32,7 +32,7 @@ exports.getGeo = function(cb) {
  * @param cb - The callback that handles the response.
  */
 exports.search = function(region, language, version, term, bucket, field, direction, size, start, cb) {
-	options = {
+	var options = {
 		url: 'https://store.sonyentertainmentnetwork.com/store/api/chihiro/00_09_000/search/' + region +
 			'/' + language + '/' + version + '/' + term + '?bucket=' + bucket +'&sort=' + field + '&direction=' +
 			direction + '&size=' + size + '&start=' + start,

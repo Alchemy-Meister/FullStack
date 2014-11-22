@@ -11,6 +11,7 @@
 
 var _ = require('lodash');
 var Store = require('./store.model');
+var Chihiro = require('./store.chihiro.api.js');
 
 // Get list of stores
 exports.index = function(req, res) {
@@ -60,6 +61,20 @@ exports.destroy = function(req, res) {
       if(err) { return handleError(res, err); }
       return res.send(204);
     });
+  });
+};
+
+exports.geo = function(req, res) {
+  Chihiro.getGeo(function (data) {
+    return res.json(data);
+  });
+};
+
+exports.search = function(req, res) {
+  Chihiro.search(req.params.region, req.params.language, req.params.version, 
+    req.params.term, req.params.bucket, req.params.field, req.params.direction,
+    req.params.size, req.params.start, function (data) {
+      return res.json(data);
   });
 };
 
