@@ -5,6 +5,9 @@ angular.module('fullStackApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    }, {
+      'title': 'Games',
+      'link': '/game'
     }];
 
     $scope.isCollapsed = true;
