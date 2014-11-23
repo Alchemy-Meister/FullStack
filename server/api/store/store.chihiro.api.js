@@ -24,7 +24,7 @@ exports.getGeo = function(cb) {
  * @param {string} language - Sets in which store should search the term. { en }
  * @param {string} version - Chihiro API version. { 999 }
  * @param {string} term - The word to be searched, spaces must be replaced by '+' character. { Final+Fantasy }
- * @param {string} bucket - The container within the store from where to start the search. { game }
+ * @param {string} bucket - The container within the store from where to start the search. { games }
  * @param {string} field - The to be ordered by. { name, id, release_date, price }
  * @param {string} direction - Sorts the result set { asc, desc }
  * @param {number} size - Defines the number of items to be searched and returned.

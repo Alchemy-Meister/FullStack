@@ -71,9 +71,9 @@ exports.geo = function(req, res) {
 };
 
 exports.search = function(req, res) {
-  Chihiro.search(req.params.region, req.params.language, req.params.version, 
-    req.params.term, req.params.bucket, req.params.field, req.params.direction,
-    req.params.size, req.params.start, function (data) {
+  Chihiro.search(req.body.region, req.body.language, req.body.version, 
+    req.body.term, req.body.bucket, req.body.field, req.body.direction,
+    req.body.size, req.body.start, function (data) {
       return res.json(data);
   });
 };
