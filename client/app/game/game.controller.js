@@ -28,7 +28,33 @@ angular.module('fullStackApp')
     };
 
     $scope.displaySize = function(size) {
-    	$scope.size = 1;
-    	$scope.unit = 'GB';
+    	var fileSizeUnit = {
+    		KB: {
+        		unit: "KB",
+        		val: 1024
+    		},
+    		MB: {
+        		unit: "MB",
+        		val: 1048576
+    		},
+    		GB: {
+        		unit: "GB",
+        		val: 1073741824
+    		}
+    	};
+    	if(fileSizeUnit.MB.val > size) {
+    		$scope.unit = fileSizeUnit.KB.unit;
+    		$scope.size = Math.floor(size / fileSizeUnit.KB.val + .5)
+    	} else if(fileSizeUnit.GB.val > size) {
+    		$scope.unit = fileSizeUnit.MB.unit;
+    		$scope.size = Number(size / fileSizeUnit.MB.val).toFixed(1);
+    	} else {
+    		$scope.unit = fileSizeUnit.GB.unit;
+    		var sizeInGigas = Number(size / fileSizeUnit.GB.val).toFixed(1);
+    		if(String(sizeInGigas).length > 4) {
+    			sizeInGigas = Math.floor(Number(sizeInGigas) + .5);
+    		}
+    		$scope.size = sizeInGigas;
+    	}
     };
   });

@@ -10,6 +10,7 @@ router.get('/geo', controller.geo);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.post('/search', controller.search);
+router.post('/cidSearch', controller.cidSearch);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);

@@ -7,5 +7,10 @@ angular.module('fullStackApp')
         url: '/game',
         templateUrl: 'app/game/game.html',
         controller: 'GameCtrl'
+      })
+      .state('game.details', {
+      	url: '/game/details',
+      	templateUrl: 'app/game/game.details.html',
+      	controller: 'GameDetailsCtrl'
       });
   });

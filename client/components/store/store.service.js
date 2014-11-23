@@ -16,6 +16,12 @@ angular.module('fullStackApp')
   			params: {
   				id: 'search'
   			}
-  		}
+  		},
+      cidSearch: {
+        method: 'POST',
+        params: {
+          id: 'cidSearch'
+        }
+      }
   	});
   });
