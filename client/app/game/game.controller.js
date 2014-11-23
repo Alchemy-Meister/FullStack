@@ -22,12 +22,26 @@ angular.module('fullStackApp')
     		options: options
     	};
     	Store.search(send, function (data) {
-    		$scope.search_results = data.links;
-    		$scope.newThing = '';
+    		angular.forEach(data.links, function (link) {
+    			if(link.hasOwnProperty('default_sku')) {
+    				if(link.default_sku.hasOwnProperty('entitlements')) {
+    					if(link.default_sku.entitlements[0]){
+    						if(link.default_sku.entitlements[0].hasOwnProperty('drms')) {
+    							if(link.default_sku.entitlements[0].drms[0]) {
+    								displaySize(link.default_sku.entitlements[0].drms[0], function() {
+    									$scope.search_results = data.links;
+    									$scope.newThing = '';
+    								});
+    							}
+    						}
+    					}
+    				}
+    			}
+    		});
     	});
     };
 
-    $scope.displaySize = function(size) {
+    function displaySize(json, cb) {
     	var fileSizeUnit = {
     		KB: {
         		unit: "KB",
@@ -42,19 +56,20 @@ angular.module('fullStackApp')
         		val: 1073741824
     		}
     	};
-    	if(fileSizeUnit.MB.val > size) {
-    		$scope.unit = fileSizeUnit.KB.unit;
-    		$scope.size = Math.floor(size / fileSizeUnit.KB.val + .5)
-    	} else if(fileSizeUnit.GB.val > size) {
-    		$scope.unit = fileSizeUnit.MB.unit;
-    		$scope.size = Number(size / fileSizeUnit.MB.val).toFixed(1);
+    	var unit;
+    	if(fileSizeUnit.MB.val > json.size) {
+    		json.unit = fileSizeUnit.KB.unit;
+    		json.size = Math.floor(json.size / fileSizeUnit.KB.val + .5)
+    	} else if(fileSizeUnit.GB.val > json.size) {
+    		json.unit = fileSizeUnit.MB.unit;
+    		json.size = Number(json.size / fileSizeUnit.MB.val).toFixed(1);
     	} else {
-    		$scope.unit = fileSizeUnit.GB.unit;
-    		var sizeInGigas = Number(size / fileSizeUnit.GB.val).toFixed(1);
-    		if(String(sizeInGigas).length > 4) {
-    			sizeInGigas = Math.floor(Number(sizeInGigas) + .5);
+    		json.unit = fileSizeUnit.GB.unit;
+    		json.size = Number(json.size / fileSizeUnit.GB.val).toFixed(1);
+    		if(String(json.size).length > 4) {
+    			json.size = Math.floor(Number(json.size) + .5);
     		}
-    		$scope.size = sizeInGigas;
     	}
+    	cb();
     };
   });
