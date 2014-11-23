@@ -13,9 +13,9 @@ angular.module('fullStackApp')
     	if($scope.newThing === '') {
     		return;
     	}
+    	var options = '?bucket=games&game_content_type=games&sort=name&direction=asc&size=999&start=0';
     	$http.post('/api/stores/search/', {region: 'ES', language: 'es',
-    		version: '999', term: $scope.newThing, bucket: 'games', field: 'name',
-    		direction: 'asc', size: '999', start: '0' })
+    		version: '999', term: $scope.newThing, options: options})
     			.success(function(data, status, headers, config) {
     				$scope.search_results = data.links;
     			});
