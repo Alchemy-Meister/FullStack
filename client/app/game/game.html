@@ -23,7 +23,7 @@
     <p class="input-group">
       <input type="text" class="form-control" placeholder="Search." ng-model="newThing">
       <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="addThing()">Search</button>
+        <button type="submit" class="btn btn-primary" ng-click="searchThing()">Search</button>
       </span>
     </p>
   </form>
@@ -38,6 +38,10 @@
         <img ng-src="{{link.images[2].url}}"></img>
         <label ng-show="link.default_sku">{{link.default_sku.display_price}}</label>
         <label ng-hide="link.default_sku">{{link.gameContentTypesList[0].name}}</label>
+        <div ng-show="link.default_sku">
+          <label>{{link.default_sku.entitlements[0].drms[0].size}}</label>
+          <label>{{unit}}</label>
+        </div>
         <div ng-repeat="platform in link.playable_platform">
           <label>{{platform}}</label>
         </div>

@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var StoreSchema = new Schema({
   store_id: { type: Number },
   region: { type: String},
-  language: { tyoe: String}
+  language: { type: String}
 });
 
 module.exports = mongoose.model('Store', StoreSchema);
