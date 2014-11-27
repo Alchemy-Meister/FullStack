@@ -1,3 +1,7 @@
-.game-img { 
-   border:1px solid #000000;
+.list {
+	background-color: #FFFFFF;
 }
+
+.list:hover {
+	background-color: #DCDCDC;
+};

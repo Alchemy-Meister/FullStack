@@ -8,9 +8,9 @@ angular.module('fullStackApp')
         templateUrl: 'app/game/game.html',
         controller: 'GameCtrl'
       })
-      .state('game.details', {
-      	url: '/game/details',
-      	templateUrl: 'app/game/game.details.html',
+      .state('gameDetails', {
+      	url: '/game/details/:cid',
+      	templateUrl: 'app/game/game-details.html',
       	controller: 'GameDetailsCtrl'
       });
   });

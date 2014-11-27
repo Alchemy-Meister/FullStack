@@ -11,7 +11,7 @@ angular.module('fullStackApp')
 
    	$scope.searchThing = function() {
     	if($scope.newThing === '') {
-    		return;
+            return;
     	}
     	var options = '?bucket=games&game_content_type=games&sort=name&direction=asc&size=9999&start=0';
     	var send = {
@@ -22,22 +22,23 @@ angular.module('fullStackApp')
     		options: options
     	};
     	Store.search(send, function (data) {
-    		angular.forEach(data.links, function (link) {
-    			if(link.hasOwnProperty('default_sku')) {
-    				if(link.default_sku.hasOwnProperty('entitlements')) {
-    					if(link.default_sku.entitlements[0]){
-    						if(link.default_sku.entitlements[0].hasOwnProperty('drms')) {
-    							if(link.default_sku.entitlements[0].drms[0]) {
-    								displaySize(link.default_sku.entitlements[0].drms[0], function() {
-    									$scope.search_results = data.links;
-    									$scope.newThing = '';
-    								});
-    							}
-    						}
-    					}
-    				}
-    			}
-    		});
+    		if(data.links.length > 0) {
+                angular.forEach(data.links, function (link) {
+                    if(link.default_sku && link.default_sku.entitlements &&
+        					link.default_sku.entitlements[0] && link.default_sku.entitlements[0].drms &&
+        						link.default_sku.entitlements[0].drms[0]) {
+        							displaySize(link.default_sku.entitlements[0].drms[0], function (err) {
+                                        $scope.searchError = '';
+                                        $scope.search_results = data.links;
+                                        $scope.newThing = '';
+        							});
+        			}
+                });
+            } else { 
+                $scope.search_results = [];
+                $scope.newThing = '';
+                $scope.searchError = 'No data was found.';
+            }
     	});
     };
 

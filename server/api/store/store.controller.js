@@ -78,7 +78,7 @@ exports.search = function(req, res) {
 };
 
 exports.cidSearch = function(req, res) {
-  Chiriro.cidSearch(req.body.region, req.body.language,
+  Chihiro.cidSearch(req.body.region, req.body.language,
     req.body.version, req.body.cid, function (data) {
       return res.json(data);
     });
