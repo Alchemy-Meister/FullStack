@@ -14,10 +14,13 @@
       <div class="nav nav-tabs nav-stacked col-md-1 col-lg-10 col-sm-6">
         <h2>{{gamedetails.title_name}}</h2>
         <img ng-src="{{gamedetails.images[2].url}}"></img>
-        <div ng-show="user.email" class="container">
+        <div ng-show="!owned && visible" class="container">
           <form class="thing-form">
-              <button type="submit" class="btn btn-primary" ng-click="searchThing()">Add Game</button>
+              <button type="submit" class="btn btn-primary" ng-click="addGame()">Add Game</button>
           </form>
+        </div>
+        <div ng-show="owned && visible">
+          <label>Owned</label>
         </div>
         <label>{{gamedetails.default_sku.display_price}}</label>
         <img ng-src="{{gamedetails.content_rating.url}}"></img>

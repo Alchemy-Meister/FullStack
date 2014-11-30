@@ -2,25 +2,29 @@
 
 angular.module('fullStackApp')
   .factory('Store', function ($resource) {
-  	return $resource('/api/stores/:id', {
-  		id: '@id'
+  	return $resource('/api/stores/:action/:field/:cid', {
+  		action: '@action',
+      field: '@field',
+      cid: '@cid'
   	}, {
   		geo: {
   			method: 'GET',
   			params: {
-  				id: 'geo'
+  				action: 'geo'
   			}
   		},
   		search: {
-  			method: 'POST',
+  			method: 'GET',
   			params: {
-  				id: 'search'
+          action: 'search',
+          field: 'name'
   			}
   		},
       cidSearch: {
-        method: 'POST',
+        method: 'GET',
         params: {
-          id: 'cidSearch'
+          action: 'search',
+          field: 'cid'
         }
       }
   	});

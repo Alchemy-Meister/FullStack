@@ -24,7 +24,7 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="nav nav-tabs nav-stacked col-md-1 col-lg-10 col-sm-6" ng-repeat="link in search_results">
-        <div class="list" ng-mouseenter="list = 'list:hover'" ng-mouseleave="list = 'list'" ui-sref="gameDetails({ cid: link.id})">
+        <div class="list" ng-mouseenter="list = 'list:hover'" ng-mouseleave="list = 'list'" ui-sref="gameDetails({ cid: link.id, store: 'ES/es'})">
           <h4>{{link.name}}</h4>
           <img class="game-img" ng-src="{{link.images[2].url}}"></img>
           <label ng-show="link.default_sku">{{link.default_sku.display_price}}</label>

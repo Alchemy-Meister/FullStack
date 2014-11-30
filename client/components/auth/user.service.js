@@ -17,6 +17,19 @@ angular.module('fullStackApp')
         params: {
           id:'me'
         }
+      },
+      getGames: {
+        method: 'GET',
+        params: {
+          controller: 'games'
+        },
+        isArray: true
+      }, 
+      addGame: {
+        method: 'POST',
+        params: {
+          controller: 'games'
+        }
       }
 	  });
   });
