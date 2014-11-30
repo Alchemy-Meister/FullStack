@@ -71,17 +71,41 @@ exports.geo = function(req, res) {
 };
 
 exports.search = function(req, res) {
-  Chihiro.search(req.body.region, req.body.language, req.body.version, 
-    req.body.term, req.body.options, function (data) {
+  var option = '?';
+  option = option.concat(processParam('bucket', req.query.bucket, true));
+  option = option.concat(processParam('game_content_type', req.query.game_content_type, false));
+  option = option.concat(processParam('sort', req.query.sort, false));
+  option = option.concat(processParam('direction', req.query.direction, false));
+  option = option.concat(processParam('size', req.query.size, false));
+  option = option.concat(processParam('start', req.query.start, false));
+  Chihiro.search(req.query.region, req.query.language, req.query.version, 
+    req.query.term, option, function (data) {
       return res.json(data);
   });
 };
 
 exports.cidSearch = function(req, res) {
-  Chihiro.cidSearch(req.body.region, req.body.language,
-    req.body.version, req.body.cid, function (data) {
+  Chihiro.cidSearch(req.query.region, req.query.language,
+    req.query.version, req.params.cid, function (data) {
       return res.json(data);
     });
+}
+
+function processParam(propertyName, jsonProperty, first) {
+  if(jsonProperty) {
+    var option = '';
+    if(!first)
+      option = '&';
+    if(jsonProperty instanceof Object) {
+      option = option.concat(propertyName, '=', jsonProperty[0]); 
+      for(var i = 1; i < jsonProperty.length; i++) {
+        option = option.concat('&', jsonProperty[i]); 
+      }
+    } else {
+      option = option.concat(propertyName, '=', jsonProperty);
+    }
+    return option;
+  }
 }
 
 function handleError(res, err) {

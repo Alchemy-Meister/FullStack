@@ -4,6 +4,9 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var async = require('async');
+
+var Game = require('../game/game.model');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -99,3 +102,38 @@ exports.me = function(req, res, next) {
 exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };
+
+exports.games = function(req, res) {
+  var userId = req.params.id;
+  User.findOne({_id: userId}, function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.json(401);
+    var fullGames = [];
+    
+    async.forEachSeries(user.games, function(id, callback) {
+      Game.findOne({game_id: id}, function (err, game) {
+        fullGames.push(game);
+        callback();
+      });
+    }, function (err) {
+      res.json(fullGames);
+    });
+  });
+};
+
+exports.addGame = function(req, res) {
+  User.findOne({_id: req.body.user_id}, function (err, user) {
+    if (err) return next(err);
+    if (!user) return res.json(401);
+    Game.findOne({game_id: req.body.game.game_id}, function (err, game) {
+      if(err) return handleError(res, err);
+      if(!game) Game.create(req.body.game);
+      user.games.push(req.body.game.game_id);
+      user.save();
+    });
+  });
+};
+
+function handleError(res, err) {
+  return res.send(500, err);
+}

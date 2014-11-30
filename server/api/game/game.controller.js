@@ -25,12 +25,6 @@ exports.show = function(req, res) {
   Game.findOne({'game_id':req.params.id}, function (err, game) {
     if(err) { return handleError(res, err); }
     if(!game) { return res.send(404); }
-    /*PSNAPI.getGameInfo(game.stores, game.cid, function(cb) {
-      console.log('%j', cb);
-    });
-    PSNAPI.getGameCID('Final Fantasy X', 'ES/es', function(cb) {
-      console.log('%j', cb);
-    });*/
     return res.json(game);
   });
 };

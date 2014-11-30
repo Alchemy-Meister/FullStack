@@ -13,5 +13,7 @@ router.get('/me', auth.isAuthenticated(), controller.me);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
+router.get('/:id/games', auth.isAuthenticated(), controller.games);
+router.post('/games', auth.isAuthenticated(), controller.addGame);
 
 module.exports = router;
