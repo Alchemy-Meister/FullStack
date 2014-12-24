@@ -4,4 +4,9 @@
 
 .list:hover {
 	background-color: #DCDCDC;
-};
+}
+
+#banner img {
+	width: 150px;
+	height: auto;
+}

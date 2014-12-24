@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fullStackApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
+  .controller('LoginCtrl', function ($scope, Auth, $location, $window, stateSaver) {
     $scope.user = {};
     $scope.errors = {};
 
@@ -15,7 +15,8 @@ angular.module('fullStackApp')
         })
         .then( function() {
           // Logged in, redirect to home
-          $location.path('/');
+          //$location.path('/');
+          stateSaver.redirectoToAttempUrl();
         })
         .catch( function(err) {
           $scope.errors.other = err.message;

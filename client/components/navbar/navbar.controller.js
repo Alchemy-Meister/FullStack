@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('fullStackApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, stateSaver) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -23,4 +23,8 @@ angular.module('fullStackApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
+    $scope.saveState = function() {
+      stateSaver.saveAttempUrl();
+    }
   });
