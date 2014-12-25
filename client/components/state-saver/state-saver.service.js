@@ -7,13 +7,13 @@ angular.module('fullStackApp')
       return {
         saveAttempUrl: function() {
           if($location.path().toLowerCase() != '/login') {
-            redirectToUrlAfterLogin = $location.path();
+            redirectToUrlAfterLogin = $location.url();
           } else {
             redirectToUrlAfterLogin = '/';
           }
         },
         redirectoToAttempUrl: function() {
-          $location.path(redirectToUrlAfterLogin);
+          $location.url(redirectToUrlAfterLogin);
         }
       } 
     })
