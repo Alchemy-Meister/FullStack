@@ -15,13 +15,15 @@ angular.module('fullStackApp')
   		},
   		search: {
   			method: 'GET',
-  			params: {
+        cache: true,
+        params: {
           action: 'search',
           field: 'name'
   			}
   		},
       cidSearch: {
         method: 'GET',
+        cache: true,
         params: {
           action: 'search',
           field: 'cid'
