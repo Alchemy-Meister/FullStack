@@ -17,7 +17,6 @@ angular.module('fullStackApp')
                     promises.push(promise.$promise);
                 });
                 $q.all(promises).then(function (games) {
-                    console.log(games);
                     angular.forEach(games, function (game) {
                         if(game.default_sku && game.default_sku.entitlements &&
                             game.default_sku.entitlements[0] && game.default_sku.entitlements[0].drms &&
