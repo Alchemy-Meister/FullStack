@@ -6,7 +6,7 @@ angular.module('fullStackApp')
       var redirectToUrlAfterLogin = '/';
       return {
         saveAttempUrl: function() {
-          if($location.path().toLowerCase() != '/login') {
+          if($location.path().toLowerCase() != '/login' && $location.path().toLowerCase() != '/signup') {
             redirectToUrlAfterLogin = $location.url();
           } else {
             redirectToUrlAfterLogin = '/';
