@@ -20,7 +20,7 @@
       <div class="nav nav-tabs nav-stacked" ng-repeat="link in search_results">
         <div class="list" ng-mouseenter="list = 'list:hover'" ng-mouseleave="list = 'list'" ui-sref="gameDetails({ cid: link.id, store: 'GB/en'})">
           <h4>{{link.name}}</h4>
-          <div class="col-xs-4 col-sm-3 ">
+          <div class="col-xs-4 col-sm-3">
             <img class="game-img" ng-src="{{link.images[2].url}}"></img>
           </div>
           <div class="col-xs-6 col-sm-3">

@@ -5,9 +5,13 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <div class="nav nav-tabs nav-stacked col-md-1 col-lg-10 col-sm-6">
+      <div class="nav nav-tabs nav-stacked">
         <h2>{{gamedetails.title_name}}</h2>
-        <img ng-src="{{gamedetails.images[2].url}}"></img>
+        <div class="container">
+          <div class="col-xs-4 col-sm-3 ">
+            <img ng-src="{{gamedetails.images[2].url}}"></img>
+          </div>
+        </div>
         <div ng-show="!owned && visible" class="container">
           <form class="thing-form">
               <button type="submit" class="btn btn-primary" ng-click="addGame()">Add Game</button>
@@ -15,11 +19,6 @@
         </div>
         <div ng-show="owned && visible">
           <label>Owned</label>
-        </div>
-        <label>{{gamedetails.default_sku.display_price}}</label>
-        <img ng-src="{{gamedetails.content_rating.url}}"></img>
-        <div ng-repeat="descriptor in gamedetails.content_descriptors">
-          <img ng-src="{{descriptor.url}}"></img>
         </div>
         <label ng-bind-html="gamedetails.long_desc"></label>
         <!--{{gamedetails}}-->
