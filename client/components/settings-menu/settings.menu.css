@@ -1,0 +1,9 @@
+.btn-group-vertical > .glyphicon glyphicon-chevron-right {
+	text-align: right;
+}
+
+.btn-group-vertical > button {
+	display: inline-block;
+	width: 100%;
+	text-align: left;
+}

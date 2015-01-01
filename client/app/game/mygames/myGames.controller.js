@@ -9,8 +9,8 @@ angular.module('fullStackApp')
                 var promises = [];
                 angular.forEach(games, function (game) {
                     var promise = Store.cidSearch({
-                        "region": "ES",
-                        "language": "es",
+                        "region": "GB",
+                        "language": "en",
                         "version": "999",
                         "cid": game.cid
                     });

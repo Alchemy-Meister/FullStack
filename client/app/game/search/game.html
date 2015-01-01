@@ -18,17 +18,24 @@
   <div class="row">
     <div>
       <div class="nav nav-tabs nav-stacked" ng-repeat="link in search_results">
-        <div class="list" ng-mouseenter="list = 'list:hover'" ng-mouseleave="list = 'list'" ui-sref="gameDetails({ cid: link.id, store: 'ES/es'})">
+        <div class="list" ng-mouseenter="list = 'list:hover'" ng-mouseleave="list = 'list'" ui-sref="gameDetails({ cid: link.id, store: 'GB/en'})">
           <h4>{{link.name}}</h4>
-          <img class="game-img" ng-src="{{link.images[2].url}}"></img>
-          <label ng-show="link.default_sku">{{link.default_sku.display_price}}</label>
-          <label ng-hide="link.default_sku">{{link.gameContentTypesList[0].name}}</label>
-          <div ng-show="link.default_sku.entitlements[0].drms[0]">
-            <label>{{link.default_sku.entitlements[0].drms[0].size}}</label>
-            <label>{{link.default_sku.entitlements[0].drms[0].unit}}</label>
+          <div class="col-xs-4 col-sm-3 ">
+            <img class="game-img" ng-src="{{link.images[2].url}}"></img>
           </div>
-          <div ng-repeat="platform in link.playable_platform">
-            <label>{{platform}}</label>
+          <div class="col-xs-6 col-sm-3">
+            <label ng-show="link.default_sku">Price: {{link.default_sku.display_price}}</label>
+            <label ng-hide="link.default_sku">{{link.gameContentTypesList[0].name}}</label>
+            <div ng-show="link.default_sku.entitlements[0].drms[0]">
+              <label>Size: {{link.default_sku.entitlements[0].drms[0].size}}</label>
+              <label>{{link.default_sku.entitlements[0].drms[0].unit}}</label>
+            </div>
+            <div>
+              <label>Platforms:</label>
+              <div ng-repeat="platform in link.playable_platform">
+                <label id="platform-item">{{platform}}</label>
+              </div>
+            </div>
           </div>
           <!--<label>{{link}}</label>-->
         </div>

@@ -27,8 +27,8 @@ angular.module('fullStackApp')
             return;
     	}
     	$location.search({
-            "region": "ES",
-            "language": "es",
+            "region": "GB",
+            "language": "en",
             "version": "999",
             "term": $scope.newThing, 
             "bucket": ["games"],
